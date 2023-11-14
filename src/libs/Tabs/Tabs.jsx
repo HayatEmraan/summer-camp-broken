@@ -37,7 +37,7 @@ const Tabs = () => {
           </p>
         </div>
       </div>
-      <div className="flex gap-4 mx-3 mt-6">
+      <div className="flex gap-4 mx-3 mt-6 flex-wrap">
         {category.map((category, index) => {
           return (
             <div

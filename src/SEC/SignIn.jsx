@@ -12,7 +12,7 @@ const SignIn = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from || "/";
-  const { signIn, signInWithGoogle, resetPassword, loading, setLoading } =
+  const { signIn, signInWithGoogle, resetPassword, loading } =
     useAuth();
   const emailRef = useRef(null);
   const resetPasswordHandler = () => {
@@ -20,11 +20,9 @@ const SignIn = () => {
       resetPassword(emailRef.current.value)
         .then((res) => {
           toast.success("Reset password link sent to your email!");
-          setLoading(false);
         })
         .catch((err) => {
           toast.error("Something went wrong. Please try again!");
-          setLoading(false);
         });
     }
   };
@@ -43,7 +41,6 @@ const SignIn = () => {
       })
       .catch((err) => {
         toast.error("Something went wrong. Please try again!");
-        setLoading(false);
       });
   };
   const handleSignInWithGoogle = () => {
@@ -63,12 +60,11 @@ const SignIn = () => {
       })
       .catch((err) => {
         toast.error("Something went wrong. Please try again!");
-        setLoading(false);
       });
   };
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <div className="container mx-auto w-1/4 border p-8 shadow-md rounded-xl">
+      <div className="container xl:mx-auto mx-4 xl:w-1/4 lg:w-1/3 md:w-1/2 w-full border p-8 shadow-md rounded-xl">
         <Link to="/">
           <img src={logo} alt="" />
         </Link>

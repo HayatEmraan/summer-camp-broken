@@ -12,16 +12,16 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../firebase/fb.config";
-import Loader from "../libs/Loader/Loader";
+import DomLoader from "../libs/Loader/DomLoader";
 
 export const AuthContext = createContext(null);
-
-const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const auth = getAuth(app);
+
+  const googleProvider = new GoogleAuthProvider();
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -44,7 +44,10 @@ const AuthProvider = ({ children }) => {
   };
 
   const logOut = () => {
+    setLoading(true);
     setLoading(false);
+    Cookies.remove("access_token");
+    window.location.reload();
     return signOut(auth);
   };
 
@@ -68,19 +71,16 @@ const AuthProvider = ({ children }) => {
         })
           .then((res) => res.json())
           .then((data) => {
-            Cookies.set("access_token", data.token, { expires: 7, path: "/" });
             setLoading(false);
+            Cookies.set("access_token", data.token, { expires: 7, path: "/" });
           });
-      } else {
-        setUser(null);
-        Cookies.remove("access_token");
-        setLoading(false);
-      }
+      } else setLoading(false);
     });
     return () => {
       return unsubscribe();
     };
   }, []);
+
   const authInfo = {
     user,
     loading,
@@ -92,9 +92,8 @@ const AuthProvider = ({ children }) => {
     logOut,
     updateUserProfile,
   };
-
   if (loading) {
-    return <Loader></Loader>;
+    return <DomLoader></DomLoader>;
   }
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

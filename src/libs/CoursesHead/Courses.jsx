@@ -10,11 +10,13 @@ import { useNavigate } from "react-router-dom";
 import DomLoader from "../Loader/DomLoader";
 
 const Courses = ({ selectCategory, sort, trending }) => {
+  const { user, loading: useLoading } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { refetch } = useCart();
+  if (!useLoading && user) {
+    var { refetch } = useCart();
+  }
   const [data, setData] = useState(null);
   const navigate = useNavigate();
-  const { user } = useAuth();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetch(
@@ -98,7 +100,7 @@ const Courses = ({ selectCategory, sort, trending }) => {
                       <h2>${item.price}</h2>
                       <h2>Available Seats: {item.availableSits}</h2>
                     </div>
-                    <div className="w-full text-center bg-purple-600 text-white rounded-lg text-2xl absolute bottom-0 left-0">
+                    <div className="w-full text-center bg-[#101828] text-white rounded-lg text-xl absolute bottom-0 left-0">
                       <button onClick={() => handleCart(item)}>
                         Add to Cart
                       </button>

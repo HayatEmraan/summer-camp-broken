@@ -103,7 +103,7 @@ const SignUp = () => {
   };
   return (
     <div className="flex justify-center items-center min-h-screen">
-      <div className="container mx-auto w-1/4 border p-8 shadow-md rounded-xl">
+      <div className="container xl:mx-auto mx-4 xl:w-1/4 lg:w-1/3 md:w-1/2 w-full border p-8 shadow-md rounded-xl">
         <Link to="/">
           <img src={logo} alt="" />
         </Link>

@@ -12,16 +12,9 @@ const CoursesHeader = () => {
   const [sort, setSort] = useState(false);
   const [trending, setTrending] = useState(false);
   return (
-    <div className="mx-auto container my-12">
-      <div className="flex justify-between items-center">
-        <div>
-          <input
-            type="text"
-            placeholder="Type here"
-            className="input input-bordered w-full max-w-xs"
-          />
-        </div>
-        <div className="flex gap-8 items-center">
+    <div className="mx-auto container mt-12">
+      <div className="flex justify-end items-center">
+        <div className="flex gap-4 items-center">
           <div
             className="flex items-center gap-1 cursor-pointer"
             onClick={() => setSort(!sort)}
@@ -33,7 +26,7 @@ const CoursesHeader = () => {
               ) : (
                 <MdOutlineKeyboardArrowUp></MdOutlineKeyboardArrowUp>
               )}
-              <MdOutlineKeyboardArrowDown className="-mt-[6px]"></MdOutlineKeyboardArrowDown>
+              <MdOutlineKeyboardArrowDown className="-mt-[8px]"></MdOutlineKeyboardArrowDown>
             </div>
           </div>
           <div
@@ -47,12 +40,12 @@ const CoursesHeader = () => {
               ) : (
                 <MdOutlineKeyboardArrowUp></MdOutlineKeyboardArrowUp>
               )}
-              <MdOutlineKeyboardArrowDown className="-mt-[6px]"></MdOutlineKeyboardArrowDown>
+              <MdOutlineKeyboardArrowDown className="-mt-[8px]"></MdOutlineKeyboardArrowDown>
             </div>
           </div>
           <div>
             <select
-              className="select select-bordered w-full max-w-xs"
+              className="select select-bordered select-sm w-full max-w-xs"
               defaultValue={"DEFAULT"}
               name="categoryBtn"
               onChange={handleCategory}

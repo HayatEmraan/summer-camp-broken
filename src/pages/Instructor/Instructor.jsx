@@ -18,15 +18,14 @@ const Instructor = () => {
       <Helmet>
         <title>Instructor | E-Learning</title>
       </Helmet>
-      <div className="grid lg:grid-cols-7 mx-5">
+      <div className="lg:grid lg:grid-cols-7 mx-5">
         <div className="col-span-2 border p-4 rounded-md shadow-xl h-fit">
           {data &&
             data.cursor.map((item, index) => {
               return (
                 <div key={index}>
                   <img
-                    style={{ width: "430px", height: "287px" }}
-                    className="rounded-md"
+                    className="rounded-md w-full"
                     src={item.image}
                     alt=""
                   />
@@ -40,7 +39,7 @@ const Instructor = () => {
             })}
         </div>
         <div className="col-span-5 ms-12">
-          <h2 className="font-semibold text-center font-cinzel text-3xl">
+          <h2 className="font-semibold text-center font-cinzel text-3xl my-5 lg:my-0">
             Courses by {nameSplit.join(" ")}
           </h2>
           <div className="space-y-4">
@@ -48,10 +47,10 @@ const Instructor = () => {
               data.courses.map((item, index) => {
                 return (
                   <div key={index}>
-                    <div className="card card-side bg-base-100 shadow-xl p-2">
+                    <div className="card block md:flex card-side bg-base-100 shadow-xl p-2">
                       <img
-                        style={{ width: "230px", height: "187px" }}
-                        className="rounded-lg"
+                        style={{ height: "187px" }}
+                        className="rounded-lg w-full md:w-[230px]"
                         src={item.thumbnailImage}
                         alt="Movie"
                       />

@@ -14,15 +14,14 @@ const Trending = () => {
   return (
     <div className="mb-10">
       <div>
-        <h2 className="font-bold text-3xl mb-4">Trending Courses</h2>
+        <h2 className="font-bold text-3xl mb-4 mx-2">Trending Courses</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 border p-6 rounded-lg gap-4">
           {trending &&
             trending.slice(0, 5).map((course, index) => {
               return (
                 <div key={index}>
                   <img
-                    className="rounded-lg"
-                    style={{ height: "187px", width: "272px" }}
+                    className="rounded-lg w-full h-[200px]"
                     src={course.thumbnailImage}
                     alt=""
                   />

@@ -5,7 +5,6 @@ import DomLoader from "../libs/Loader/DomLoader";
 const PrivateUser = ({ children }) => {
   const { user, loading } = useAuth();
   const location = useLocation();
-
   if (loading) {
     return <DomLoader></DomLoader>;
   }

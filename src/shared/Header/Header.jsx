@@ -14,16 +14,22 @@ import {
 import { useInstructor } from "../../Hooks/useInstructor";
 import { useAdmin } from "../../Hooks/useAdmin";
 const Header = () => {
-  const { user, logOut } = useAuth();
-  const { cart } = useCart();
+  const { user, logOut, loading } = useAuth();
+  if (!loading && user) {
+    var { cart } = useCart();
+    var { isAdmin } = useAdmin();
+    var { isInstructor: instructor } = useInstructor();
+  }
+
+  console.log(cart);
+
   const [isActive, setActive] = useState(false);
   const location = useLocation();
   useEffect(() => {
     setActive(false);
   }, [location]);
   const [isHidden, setHidden] = useState(false);
-  const { isAdmin, isLoading } = useAdmin();
-  const { isInstructor: instructor } = useInstructor();
+
   return (
     <div className="shadow z-10">
       <div className="mx-auto container">
@@ -40,19 +46,17 @@ const Header = () => {
           <div
             className={`${
               isHidden
-                ? "absolute mt-72 ps-4 shadow-md rounded-md bg-[#FFFFFF] w-full"
+                ? "absolute mt-56 ps-4 shadow-md rounded-md bg-[#FFFFFF] w-full"
                 : "hidden"
             } lg:flex items-center`}
           >
-            <div>
-              <ul className="font-cinzel flex gap-2 lg:gap-12 me-8 flex-col lg:flex-row mt-2 lg:mt-0">
-                <Link to="/">Home</Link>
-                <Link to="/courses">Courses</Link>
-                <Link to="/instructors">Instructors</Link>
-                <Link to="/about">About</Link>
-              </ul>
-            </div>
-            <div className="space-x-12 font-inter lg:mt-3">
+            <ul className="font-cinzel flex gap-2 lg:gap-12 me-8 flex-col lg:flex-row mt-2 lg:mt-0">
+              <Link to="/">Home</Link>
+              <Link to="/courses">Courses</Link>
+              <Link to="/instructors">Instructors</Link>
+              <Link to="/about">About</Link>
+            </ul>
+            <div className="space-x-12 font-inter lg:mt-0 my-4 lg:my-0">
               {user ? (
                 <div className="flex flex-col lg:flex-row lg:items-center gap-2  cursor-pointer relative">
                   {!isAdmin && !instructor && (
@@ -67,7 +71,7 @@ const Header = () => {
                     </Link>
                   )}
                   <div
-                    className="flex gap-2 items-center mb-3"
+                    className="flex gap-2 items-center"
                     onClick={() => setActive(!isActive)}
                   >
                     {user ? (
@@ -89,8 +93,8 @@ const Header = () => {
                   </div>
                   {isActive && (
                     <div
-                      className={`absolute lg:-bottom-32 ${
-                        isHidden && "top-20"
+                      className={`absolute lg:-bottom-28 ${
+                        isHidden && "top-8"
                       } lg:right-0 border p-1 shadow-md rounded-md px-2 opacity-100 bg-[#FFFFFF]`}
                     >
                       <div>
